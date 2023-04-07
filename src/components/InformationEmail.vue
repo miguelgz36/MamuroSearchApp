@@ -2,7 +2,8 @@
     <div>
       <h2>Selected Row Information</h2>
       <div v-if="selectedRow">
-        <p>{{selectedRow._source.message}}</p>
+        <p>{{ selectedRow._source.Subject }}</p>
+        <p>{{ selectedRow._source.message }}</p>
       </div>
       <div v-else>
       </div>

@@ -14,9 +14,11 @@ import Email from './types/Email';
 const tableData = ref<Email[]>([])
 const isLoading = ref<boolean>(true)
 const textRef = ref<string>("")
+var selectedRow: Email | null = null
 watchEffect(() => {
+      selectedRow = null;
       isLoading.value = true
-      fetch('http://localhost:8081/search?text='+textRef.value)
+      fetch(`http://localhost:8081/search?text=${textRef.value}`)
         .then(response => response.json())
         .then((data) => {
             tableData.value = data.hits.hits;
@@ -37,7 +39,7 @@ export default defineComponent({
   },
   data() {
     return {
-      selectedRow: null as Email | null,
+      selectedRow,
       tableData,
       isLoading,
       textRef
