@@ -2,18 +2,16 @@
     <table v-if="!isLoading">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Email</th>
+          <th>Subject</th>
+          <th>From</th>
+          <th>To</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="row in tableData" :key="row.id" @click="selectRow(row)">
-          <td>{{ row.id }}</td>
-          <td>{{ row.name }}</td>
-          <td>{{ row.age }}</td>
-          <td>{{ row.email }}</td>
+        <tr v-for="row in tableData" :key="row._source['Message-ID']" @click="selectRow(row)">
+          <td>{{ row._source.Subject }}</td>
+          <td>{{ row._source.From }}</td>
+          <td>{{ row._source.To }}</td>
         </tr>
       </tbody>
     </table>
@@ -22,18 +20,12 @@
   
   <script lang="ts">
   import { defineComponent } from 'vue';
-  
-  interface Row {
-    id: number;
-    name: string;
-    age: number;
-    email: string;
-  }
+  import Email from '@/types/Email';
   
   export default defineComponent({
     props: {
       tableData: {
-        type: Array as () => Row[],
+        type: Array as () => Email[],
         required: true
       },
       isLoading: {
@@ -42,7 +34,7 @@
       }
     },
     methods: {
-      selectRow(row: Row) {
+      selectRow(row: Email) {
         this.$emit('row-selected', row);
       }
     }

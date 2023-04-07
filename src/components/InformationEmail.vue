@@ -2,10 +2,7 @@
     <div>
       <h2>Selected Row Information</h2>
       <div v-if="selectedRow">
-        <p>ID: {{ selectedRow.id }}</p>
-        <p>Name: {{ selectedRow.name }}</p>
-        <p>Age: {{ selectedRow.age }}</p>
-        <p>Email: {{ selectedRow.email }}</p>
+        <p>{{selectedRow._source.message}}</p>
       </div>
       <div v-else>
       </div>
@@ -13,19 +10,13 @@
   </template>
   
   <script lang="ts">
-  import { defineComponent } from 'vue';
-  
-  interface Row {
-    id: number;
-    name: string;
-    age: number;
-    email: string;
-  }
+  import Email from '@/types/Email';
+import { defineComponent } from 'vue';
   
   export default defineComponent({
     props: {
       selectedRow: {
-        type: Object as () => Row,
+        type: Object as () => Email,
         default: null
       }
     }
