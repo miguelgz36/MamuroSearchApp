@@ -1,5 +1,6 @@
 <template>
-    <table v-if="!isLoading">
+  <div v-if="!isLoading">
+    <table>
       <thead>
         <tr>
           <th>Subject</th>
@@ -14,25 +15,17 @@
           <td>{{ row._source.To }}</td>
         </tr>
       </tbody>
-    </table>
-    <h2 v-else >Loading... </h2>
+    </table> 
+  </div>
+  <h2 v-else >Loading... </h2>
   </template>
   
   <script lang="ts">
-  import { defineComponent } from 'vue';
+  import {defineComponent} from 'vue';
   import Email from '@/types/Email';
-  
+
   export default defineComponent({
-    props: {
-      tableData: {
-        type: Array as () => Email[],
-        required: true
-      },
-      isLoading: {
-        type: Boolean,
-        required: true
-      }
-    },
+    props: ['tableData','isLoading'],
     methods: {
       selectRow(row: Email) {
         this.$emit('row-selected', row);
