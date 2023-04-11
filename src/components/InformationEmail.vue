@@ -1,10 +1,7 @@
 <template>
-    <div>
-      <h2>Selected Row Information</h2>
+    <div class="right-container text-sm">
       <div v-if="selectedRow">
         <p>{{ selectedRow._source.Subject }}</p>
-        <p>From: {{ selectedRow._source.From }}</p>
-        <p>To: {{ selectedRow._source.To }}</p>
         <p v-html="selectedRow._source.message.replace(new RegExp(textSearch, 'gi'), '<strong>$&</strong>')"></p>
       </div>
       <div v-else>

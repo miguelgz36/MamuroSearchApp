@@ -1,23 +1,29 @@
 <template>
-  <div v-if="!isLoading">
+  <div class="left-container text-sm">
     <table>
       <thead>
         <tr>
-          <th>Subject</th>
-          <th>From</th>
-          <th>To</th>
+          <th class="px-4 py-2 border border-gray-400">Subject</th>
+          <th class="px-4 py-2 border border-gray-400">From</th>
+          <th class="px-4 py-2 border border-gray-400">To</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="row in tableData" :key="row._source['Message-ID']" @click="selectRow(row)">
-          <td>{{ row._source.Subject }}</td>
-          <td>{{ row._source.From }}</td>
-          <td>{{ row._source.To }}</td>
+      <template v-for="i in leftRows" :key="i" >
+        <tr v-if="tableData[i-1]" :key="tableData[i-1]._source['Message-ID']" @click="selectRow(tableData[i-1])" class="hover:bg-gray-50">
+          <td class="px-4 py-2 border border-gray-400">{{ tableData[i-1]._source.Subject }}</td>
+          <td class="px-4 py-2 border border-gray-400">{{ tableData[i-1]._source.From }}</td>
+          <td class="px-4 py-2 border border-gray-400">{{ tableData[i-1]._source.To }}</td>
         </tr>
+        <tr v-else>
+              <td class="px-4 py-2 border border-gray-400">&nbsp;</td>
+              <td class="px-4 py-2 border border-gray-400">&nbsp;</td>
+              <td class="px-4 py-2 border border-gray-400">&nbsp;</td>
+        </tr>
+      </template>
       </tbody>
     </table> 
   </div>
-  <h2 v-else >Loading... </h2>
   </template>
   
   <script lang="ts">
@@ -30,6 +36,11 @@
       selectRow(row: Email) {
         this.$emit('row-selected', row);
       }
+    },
+    data() {
+    return {
+      leftRows: 20, // Define the desired number of rows for the left table
+    };
     }
   });
   </script>

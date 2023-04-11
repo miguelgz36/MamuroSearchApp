@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <input type="text" v-model="text"/>
-        <button @click="updateText(text)">Get</button>
+    <div class="flex items-center justify-between">
+        <input type="text" v-model="text" class="w-full h-12 py-2 px-4 rounded-lg"/>
+        <button @click="updateText(text)" class="py-2 px-4">Search</button>
     </div>
 </template>
 
