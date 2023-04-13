@@ -1,9 +1,7 @@
 interface Row {
-    'Message-ID': string
-    Date: string;
-    From: string;
-    To: string;
-    Subject: string;
+    from: string;
+    to: string;
+    subject: string;
     message: string;
   }
 export default interface Email {

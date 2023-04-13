@@ -1,7 +1,7 @@
 <template>
     <div class="right-container text-sm">
       <div v-if="selectedRow">
-        <p>{{ selectedRow._source.Subject }}</p>
+        <p>{{ selectedRow._source.subject }}</p>
         <p v-html="selectedRow._source.message.replace(new RegExp(textSearch, 'gi'), '<strong>$&</strong>')"></p>
       </div>
       <div v-else>
