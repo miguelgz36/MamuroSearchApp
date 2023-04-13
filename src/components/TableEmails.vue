@@ -9,38 +9,38 @@
         </tr>
       </thead>
       <tbody>
-      <template v-for="i in leftRows" :key="i" >
-        <tr v-if="tableData[i-1]" :key="tableData[i-1]._source['Message-ID']" @click="selectRow(tableData[i-1])" class="hover:bg-gray-50">
-          <td class="px-4 py-2 border border-gray-400">{{ tableData[i-1]._source.Subject }}</td>
-          <td class="px-4 py-2 border border-gray-400">{{ tableData[i-1]._source.From }}</td>
-          <td class="px-4 py-2 border border-gray-400">{{ tableData[i-1]._source.To }}</td>
-        </tr>
-        <tr v-else>
-              <td class="px-4 py-2 border border-gray-400">&nbsp;</td>
-              <td class="px-4 py-2 border border-gray-400">&nbsp;</td>
-              <td class="px-4 py-2 border border-gray-400">&nbsp;</td>
-        </tr>
-      </template>
+        <template v-for="i in leftRows" :key="i">
+          <tr v-if="tableData[i - 1]" @click="selectRow(tableData[i - 1])" class="hover:bg-gray-50">
+            <td class="px-4 py-2 border border-gray-400">{{ tableData[i - 1]._source.subject }}</td>
+            <td class="px-4 py-2 border border-gray-400">{{ tableData[i - 1]._source.from }}</td>
+            <td class="px-4 py-2 border border-gray-400">{{ tableData[i - 1]._source.to }}</td>
+          </tr>
+          <tr v-else>
+            <td class="px-4 py-2 border border-gray-400">&nbsp;</td>
+            <td class="px-4 py-2 border border-gray-400">&nbsp;</td>
+            <td class="px-4 py-2 border border-gray-400">&nbsp;</td>
+          </tr>
+        </template>
       </tbody>
-    </table> 
+    </table>
   </div>
-  </template>
+</template>
   
-  <script lang="ts">
-  import {defineComponent} from 'vue';
-  import Email from '@/types/Email';
+<script lang="ts">
+import { defineComponent } from 'vue';
+import Email from '@/types/Email';
 
-  export default defineComponent({
-    props: ['tableData','isLoading'],
-    methods: {
-      selectRow(row: Email) {
-        this.$emit('row-selected', row);
-      }
-    },
-    data() {
-    return {
-      leftRows: 20, // Define the desired number of rows for the left table
-    };
+export default defineComponent({
+  props: ['tableData', 'isLoading'],
+  methods: {
+    selectRow(row: Email) {
+      this.$emit('row-selected', row);
     }
-  });
-  </script>
+  },
+  data() {
+    return {
+      leftRows: 15, 
+    };
+  }
+});
+</script>
