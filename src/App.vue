@@ -1,7 +1,9 @@
 <template>
   <app-search-input :update-text="updateText"></app-search-input>"
-  <app-table-emails :table-data="tableData" :isLoading="isLoading" @row-selected="onRowSelected"></app-table-emails>
-  <app-information-email :selected-row="selectedRow" :text-search="textRef"></app-information-email>
+  <div class="grid-container col-span-2">
+    <app-table-emails :table-data="tableData" :isLoading="isLoading" @row-selected="onRowSelected"></app-table-emails>
+    <app-information-email :selected-row="selectedRow" :text-search="textRef"></app-information-email>
+  </div>
 </template>
 
 <script lang="ts">
