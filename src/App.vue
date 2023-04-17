@@ -23,14 +23,15 @@ const tableDataRef = ref<Email[]>([]);
 const textRef = ref<string>("");
 const currentPageRef = ref(1);
 const totalItemsRef = ref(0);
-var selectedRow: Email | null = null;
+const selectedRow= ref<Email | null>();
 function getEmails() {
-  selectedRow = null;
-  fetch(`http://localhost:8080/search?text=${textRef.value}&page=${currentPageRef.value - 1}`)
+  selectedRow.value = null;
+  fetch(`http://34.216.225.112:8080/search?text=${textRef.value}&page=${currentPageRef.value - 1}`)
     .then(response => response.json())
     .then((data) => {
       tableDataRef.value = data.hits.hits;
       totalItemsRef.value = data.hits.total.value;
+      selectedRow.value = tableDataRef.value[0]
     })
     .catch(error => {
       console.error('Error fetching persons', error);
